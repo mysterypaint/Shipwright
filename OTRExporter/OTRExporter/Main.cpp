@@ -183,6 +183,7 @@ static void ImportExporters()
 	// In this example we set up a new exporter called "EXAMPLE".
 	// By running ZAPD with the argument -se EXAMPLE, we tell it that we want to use this exporter for our resources.
 	ExporterSet* exporterSet = new ExporterSet();
+	ExporterSet* exporterSet2 = new ExporterSet();
 	exporterSet->processFileModeFunc = ExporterProcessFileMode;
 	exporterSet->parseFileModeFunc = ExporterParseFileMode;
 	exporterSet->parseArgsFunc = ExporterParseArgs;
@@ -212,7 +213,10 @@ static void ImportExporters()
 	exporterSet->exporters[ZResourceType::Blob] = new OTRExporter_Blob();
 	exporterSet->exporters[ZResourceType::Mtx] = new OTRExporter_MtxExporter();
 
+	exporterSet2->exporters[ZResourceType::Text] = new OTRExporter_Text();
+
 	Globals::AddExporter("OTR", exporterSet);
+	Globals::AddExporter("Texts", exporterSet2);
 
 	InitVersionInfo();
 }
